@@ -51,15 +51,15 @@ const userSchema = new mongoose.Schema(
 
 // middleware for convert password into hash password
 userSchema.pre("save", async function (next) {
-  if (this.isModified("password")) {
-    await bcrypt.genSalt(saltRounds, function (err, salt) {
-      bcrypt.hash(this.password, salt, function (err, hash) {
-        this.password = hash;
-      });
-    });
+  try {
+    if (this.isModified("password")) {
+      const salt = await bcrypt.genSalt(10);
+      this.password = await bcrypt.hash(this.password, salt);
+    }
     next();
+  } catch (err) {
+    next(err);
   }
-  return next();
 });
 
 // methode for cheaking password

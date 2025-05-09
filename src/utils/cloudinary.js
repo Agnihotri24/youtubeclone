@@ -14,7 +14,7 @@ import fs from 'fs'
           const uploadfile = await  cloudinary.uploader.upload(localpath, {
             resource_type : "auto"
           });
-
+          fs.unlinkSync(localpath);
           return uploadfile;
          }
          catch(err)

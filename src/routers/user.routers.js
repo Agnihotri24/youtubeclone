@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { registerUser } from '../controllers/user.controllers.js';
-import {upload} from '../middlewares/multer.middleware.js'
+import {upload }from '../middlewares/multer.middleware.js'
 
 const router = Router();
 
@@ -8,7 +8,7 @@ const router = Router();
 router.route("/registered").post(
   upload.fields([
     {
-      name: " avatar",
+      name: "avatar",
       maxCount: 1,
     },
     {
@@ -19,6 +19,7 @@ router.route("/registered").post(
   registerUser,
 );
 
+  
 // routes for login user
 // router.route("/login").post(loginUser);
 

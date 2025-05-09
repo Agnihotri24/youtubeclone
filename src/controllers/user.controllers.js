@@ -25,19 +25,21 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(400, "full name can;t empty");
   }
   // validating the password
-  if (password.length() < 8) {
+  if (password.length < 8) {
     throw new ApiError(400, "Password must be atleast 8 digit");
   }
 
   // cheaking the user exist or not
-  const isexistuser = User.findOne({ username, email });
-
+  const isexistuser = await User.findOne({username});
+    
   if (isexistuser) {
     throw new ApiError(408, "user already exist");
   }
 
   // now reciveting the path of avater and coverimage
   const avatarlocalpath = req.files?.avatar[0].path;
+
+  // in case coverimage are not upload then it may be give arror so handle it
   const coverimagelocalpath = req.files?.coverImage[0].path;
 
   if (!avatarlocalpath) throw new ApiError(400, "Avatar is required ");
@@ -45,6 +47,7 @@ const registerUser = asyncHandler(async (req, res) => {
   // now we have local path of avatar so we need to upload on clodinary
   const avatarupload = await uploadfileoncloudinary(avatarlocalpath);
   const coverimageupload = await uploadfileoncloudinary(coverimagelocalpath);
+
 
   if (!avatarupload) throw new ApiError(400, "Avatar is required ");
 
@@ -55,19 +58,25 @@ const registerUser = asyncHandler(async (req, res) => {
     username: username.toLowerCase(),
     email: email.toLowerCase(),
     password,
-    avatar: avatarupload.url(),
-    coverImage: coverimageupload.url() || "",
+    avatar: avatarupload.url,
+    coverImage: coverimageupload?.url || "",
   });
 
   // now remove cheaking user create or not
   if (!user) throw new ApiError(500, "Some issue while creating user");
 
-  const createduser = user
+
+  const createduser = await User
     .findOne({ _id: user._id })
     .select("-password -refresheToken");
 
+    // console.log(createduser);
+  console.log(createduser)
+
   // now sending the response vis apiResponse
-  res.json(new ApiResponse(200, createduser, "User created sucessfully"));
+  res.json(
+    new ApiResponse(200, createduser, "User created sucessfully")
+  );
 });
 
 export { registerUser };
