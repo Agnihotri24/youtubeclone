@@ -34,11 +34,11 @@ Today marks the beginning of our journey to build a production-level YouTube bac
 * .prettierrc
 * .prettierignore
 
-## 📅 Day 02 — Project Planning & Setup
+## 📅 Day 02 — Set up Error Handling API and Response Handling API
 
 All the setup for Error, Response, and Handling Api inside utils folder for Error use Error class for Node and extend it and defing all the member and defining constructor and methode.
 
-## 📅 Day 03 — Project Planning & Setup
+## 📅 Day 03 — Creating All Models & cloudinary Setup
 
 ### Creating Models
   * user.model
@@ -51,6 +51,10 @@ All the setup for Error, Response, and Handling Api inside utils folder for Erro
 #### File Storing setup on clodinary
 use clouding to store all file such image, video, pdf, ... etc using multer done all the setup like middleware, and utils for both case
 
+## 📅 Day 04 — Multer Middleware & Routes setup
+in the day 04 setup the multer middleware for uploading all the file at temporary and
+set up the user route for handling all request at user routes and setup registered route
 
-
+## 📅 Day 05 — Complete the registered controller and test with postman
+in the day 5 create controller for registered the user with proper validation and uploading all files at cloudinary along with this handling cornor case.
 
