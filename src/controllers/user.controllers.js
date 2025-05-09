@@ -4,13 +4,14 @@ import { User } from "../models/user.models.js";
 import { uploadfileoncloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
+
 // registered user controller
 const registerUser = asyncHandler(async (req, res) => {
-  // first recieveing the data from front end
+  // first recieveing the data from front end 
   const { username, email, fullName, password } = req.body;
 
   // validating the all details
-  // validate username
+  // validate username either Null
   if (username.trim() === "") {
     throw new ApiError(400, "username can't empty");
   }
