@@ -58,3 +58,6 @@ set up the user route for handling all request at user routes and setup register
 ## 📅 Day 05 — Complete the registered controller and test with postman
 in the day 5 create controller for registered the user with proper validation and uploading all files at cloudinary along with this handling cornor case.
 
+## 📅 Day 06 — Creating Login & Logout Routes
+In day 5 creating login and logout route with proper validation and implement the Access and refresh token 
+with resding the ErrorApi and ResponseApi and testing with postman
