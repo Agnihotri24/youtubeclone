@@ -1,11 +1,16 @@
-import { Router } from 'express'
-import { registerUser } from '../controllers/user.controllers.js';
-import {upload }from '../middlewares/multer.middleware.js'
+import { Router } from "express";
+import {
+  registerUser,
+  loginUser,
+  logoutUser,
+} from "../controllers/user.controllers.js";
+import { upload } from "../middlewares/multer.middleware.js";
+import { isloggedin } from "../middlewares/isloggedin.js";
 
 const router = Router();
 
 // routes for registered
-router.route("/registered").post(
+router.route("/register").post(
   upload.fields([
     {
       name: "avatar",
@@ -13,17 +18,17 @@ router.route("/registered").post(
     },
     {
       name: "coverImage",
-      maxCount : 1
+      maxCount: 1,
     },
   ]),
   registerUser,
 );
 
-  
 // routes for login user
-// router.route("/login").post(loginUser);
+router.route("/login").post(loginUser);
 
+// protected Routes
 // routes for logout user
-// router.route("/logout").get(registerUser);
+router.route("/logout").get(isloggedin, logoutUser);
 
-export default router
+export default router;

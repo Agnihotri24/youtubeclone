@@ -63,32 +63,32 @@ userSchema.pre("save", async function (next) {
 });
 
 // methode for cheaking password
-userSchema.methods.cheakPassword = async function () {
+userSchema.methods.cheakPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
 // middleware for generate token by custom methode
 userSchema.methods.AccesTokenGenerate =  function () {
-  return jwt.signin(
+  return jwt.sign(
     {
       _id: this._id,
       email: this.email,
       userName: this.userName,
     },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: ACCESS_TOKEN_TIME },
+    { expiresIn: process.env.ACCESS_TOKEN_TIME },
   );
 };
 
 
 // middleware for generate token by custom methode
 userSchema.methods.refresheTokenGenerate =  function () {
-  return jwt.signin(
+  return jwt.sign(
     {
       _id: this._id,
     },
     process.env.REFRESH_TOKEN_SECRET,
-    { expiresIn: REFRESH_TOKEN_TIME },
+    { expiresIn: process.env.REFRESH_TOKEN_TIME },
   );
 };
 
