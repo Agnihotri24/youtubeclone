@@ -3,6 +3,10 @@ import {
   registerUser,
   loginUser,
   logoutUser,
+  changePassword,
+  updateProfile,
+  updateAvatar,
+  updateCoverImage,
 } from "../controllers/user.controllers.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { isloggedin } from "../middlewares/isloggedin.js";
@@ -31,4 +35,15 @@ router.route("/login").post(loginUser);
 // routes for logout user
 router.route("/logout").get(isloggedin, logoutUser);
 
+// routes for change password
+router.route("/changepassword").post(isloggedin, changePassword);
+
+// routes for change password
+router.route("/updateprofile").post(isloggedin, updateProfile);
+
+// routes for change password
+router.route("/updateavatar").post(isloggedin, updateAvatar);
+
+// routes for change password
+router.route("/updatecoverimage").post(isloggedin, updateCoverImage);
 export default router;
