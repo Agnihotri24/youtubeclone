@@ -64,3 +64,6 @@ with resding the ErrorApi and ResponseApi and testing with postman
 
 ## 📅 Day 07 — controller for update the details
 in Day 7 creating the controller and route for update the user details such as chnagepassword, change details, update avatar image and update cover image ..
+
+## 📅 Day 08 — controller view profile and watch history
+in day 08 complete the controller and routes for view channel and also watch history. and in view channel also feature to see the subscriber and subscribe that is achieve via aggrigation piplining by joining the two document user and subscriber.
