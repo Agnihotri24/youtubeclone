@@ -7,6 +7,8 @@ import {
   updateProfile,
   updateAvatar,
   updateCoverImage,
+  viewUserChannelProfile,
+  viewWatchHistory,
 } from "../controllers/user.controllers.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { isloggedin } from "../middlewares/isloggedin.js";
@@ -36,14 +38,20 @@ router.route("/login").post(loginUser);
 router.route("/logout").get(isloggedin, logoutUser);
 
 // routes for change password
-router.route("/changepassword").post(isloggedin, changePassword);
+router.route("/changepassword").patch(isloggedin, changePassword);
 
 // routes for change password
-router.route("/updateprofile").post(isloggedin, updateProfile);
+router.route("/updateprofile").patch(isloggedin, updateProfile);
 
 // routes for change password
-router.route("/updateavatar").post(isloggedin, updateAvatar);
+router.route("/updateavatar").patch(isloggedin, updateAvatar);
 
 // routes for change password
-router.route("/updatecoverimage").post(isloggedin, updateCoverImage);
+router.route("/updatecoverimage").patch(isloggedin, updateCoverImage);
+
+// routes for view channel
+router.route("/viewchannel/:id").get(isloggedin, viewUserChannelProfile);
+
+// route for watch history
+router.route("/watchhistory/:id").get(isloggedin, viewWatchHistory);
 export default router;
