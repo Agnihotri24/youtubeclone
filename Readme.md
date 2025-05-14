@@ -67,3 +67,6 @@ in Day 7 creating the controller and route for update the user details such as c
 
 ## 📅 Day 08 — controller view profile and watch history
 in day 08 complete the controller and routes for view channel and also watch history. and in view channel also feature to see the subscriber and subscribe that is achieve via aggrigation piplining by joining the two document user and subscriber.
+
+## 📅 Day 09 — controller view profile and watch history
+In day 09 creating the models of like, comment, tweets. playlist.
